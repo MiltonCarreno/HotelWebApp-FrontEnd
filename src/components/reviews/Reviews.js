@@ -9,7 +9,7 @@ const Reviews = ({getMovieData,movie,reviews,setReviews}) => {
     let params = useParams();
     const movieId = params.movieId;
 
-    useEffect(()=>{
+    useEffect(() => {
         getMovieData(movieId);
     },[])
 
@@ -19,9 +19,10 @@ const Reviews = ({getMovieData,movie,reviews,setReviews}) => {
 
         try {
             const response = await api.post('api/v1/reviews', {reviewBody:rev.value,imdbId:movieId});
+            console.log(reviews);
             const updatedReviews = [...reviews,{body:rev.value}];
             rev.value = '';
-            setReviews(updateReviews);
+            setReviews(updatedReviews);
         } catch (err) {
             console.log(err);
         }
